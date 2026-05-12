@@ -23,12 +23,8 @@ public class Rental {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id")
+    @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tv_series_id")
-    private TvSeries tvSeries;
 
     @Column(nullable = false)
     private LocalDateTime rentalDate;
