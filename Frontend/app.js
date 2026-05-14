@@ -32,7 +32,7 @@ function renderMovies(page, customList = null) {
         const div = document.createElement("div");
         div.className = "movie-card";
         div.style.backgroundImage = `url('${m.imageUrl || 'https://via.placeholder.com/200x300'}')`;
-        // Member 2 OOP Polymorphism icon display simulation
+        //Polymorphism icon display simulation
         let icon = m.genre.toLowerCase().includes('action') ? '💥' : (m.genre.toLowerCase().includes('comedy') ? '😂' : '🎬');
         div.innerHTML = `<div class="movie-info"><h4>${icon} ${m.title}</h4><p>$${m.price.toFixed(2)}</p></div>`;
         div.onclick = () => openMovieDetails(m);
