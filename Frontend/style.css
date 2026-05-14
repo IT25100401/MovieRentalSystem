@@ -1,0 +1,321 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #141414;
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    color: #e50914;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.nav-links a, .nav-links button {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-links button {
+    background-color: #e50914;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.nav-links button:hover {
+    background-color: #f40612;
+}
+
+/* PAGES */
+.page {
+    display: none;
+    min-height: 100vh;
+}
+
+.active-page {
+    display: block;
+}
+
+/* HERO SLIDESHOW */
+@keyframes slideshow {
+    0% { background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/US-en-20231016-popsignuptwoweeks-perspective_alpha_website_large.jpg'); }
+    25% { background-image: url('https://image.tmdb.org/t/p/original/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg'); }
+    50% { background-image: url('https://image.tmdb.org/t/p/original/nDLylQOoIakCSigKhlZNCu2xZ1I.jpg'); }
+    75% { background-image: url('https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg'); }
+    100% { background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/US-en-20231016-popsignuptwoweeks-perspective_alpha_website_large.jpg'); }
+}
+
+.hero {
+    height: 80vh;
+    animation: slideshow 20s infinite;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.6);
+}
+
+.hero-content h2 { font-size: 4rem; margin-bottom: 20px; }
+.hero-content p { font-size: 1.5rem; margin-bottom: 30px; }
+
+/* SEARCH BARS */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    backdrop-filter: blur(5px);
+}
+.search-bar::placeholder { color: #ccc; }
+
+.search-bar-dark {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #181818;
+    color: white;
+    outline: none;
+}
+
+/* CONTAINERS & GRIDS */
+.container {
+    padding: 20px 50px;
+    padding-bottom: 100px;
+}
+
+.container h3, .container h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.movie-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.movie-card {
+    min-width: 200px;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 20px 10px 10px;
+}
+
+/* MOVIE DETAILS PAGE */
+.back-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.details-container {
+    display: flex;
+    gap: 50px;
+    background: #181818;
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.detail-poster {
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.detail-info { flex: 1; }
+
+.action-buttons { display: flex; gap: 15px; }
+
+.rent-btn {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.rent-btn:hover { background-color: #f40612; }
+
+.cart-btn {
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    border: 1px solid white;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cart-btn:hover { background-color: rgba(255,255,255,0.3); }
+
+.divider {
+    margin: 40px 0;
+    border: 0;
+    border-top: 1px solid #333;
+}
+
+/* CART & TRANSACTION & REVIEWS */
+.cart-list, .review-list {
+    background: #181818;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+
+.cart-item:last-child { border-bottom: none; }
+
+.transaction-box {
+    background: #181818;
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.pay-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: #333;
+    border: 1px solid #555;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+}
+
+.review-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.star-rating .star {
+    color: #555;
+    transition: color 0.2s, transform 0.1s;
+}
+
+.star-rating .star:hover {
+    transform: scale(1.1);
+}
+
+.star-rating .star.active {
+    color: #f5b50a; /* gold */
+}
+
+/* MODALS */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    background-color: #181818;
+    margin: 10% auto;
+    padding: 40px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
