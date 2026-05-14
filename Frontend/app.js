@@ -15,3 +15,19 @@
             <div class="movie-row" id="trendingMoviesRow"></div>
         </main>
     </div>
+
+
+
+
+ <!-- MEMBER 2: Movie Catalog Management -->
+    <!-- MOVIES PAGE -->
+    <div id="page-movies" class="page">
+        <main class="container" style="padding-top: 100px;">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <h2>All Movies</h2>
+            <div style="margin-bottom: 20px;">
+                <input type="search" id="moviesSearch" class="search-bar-dark" autocomplete="off" placeholder="Search all movies..." onkeyup="handleSearch('movies')">
+            </div>
+            <div class="movie-grid" id="allMoviesGrid"></div>
+        </main>
+    </div>
