@@ -1,1 +1,13 @@
-
+ <!-- MEMBER 3: Rental Transaction Management -->
+    <!-- CART PAGE -->
+    <div id="page-cart" class="page">
+        <main class="container" style="padding-top: 100px;">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <h2>Your Cart</h2>
+            <div id="cartItemsList" class="cart-list"></div>
+            <div class="cart-total" style="text-align: right; margin-top: 30px;">
+                <h3>Total: $<span id="cartTotal">0.00</span></h3>
+                <button onclick="goToTransaction(true)" class="rent-btn" id="checkoutBtn" style="display:none; margin-top: 15px;">Checkout All</button>
+            </div>
+        </main>
+    </div>
