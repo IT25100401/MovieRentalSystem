@@ -52,3 +52,108 @@ function openMovieDetails(movie) {
     loadReviews(movie.id);
     checkWatchlistStatus(movie.id);
 }
+
+
+
+// --- MEMBER 2: Movie Catalog Management (Admin) ---
+// --- ADMIN ---
+async function addMovie() {
+    if (!currentUser || currentUser.role !== 'ADMIN') return;
+    const title = document.getElementById("addTitle").value;
+    const genre = document.getElementById("addGenre").value;
+    const year = document.getElementById("addYear").value;
+    const price = document.getElementById("addPrice").value;
+    const imageUrl = document.getElementById("addImage").value;
+
+    const res = await fetch(`${API_URL}/movies`, {
+        method: 'POST',
+        body: JSON.stringify({ title, genre, year: parseInt(year), price: parseFloat(price), available: true, imageUrl })
+    });
+    if (res.ok) {
+        alert("Movie successfully added to catalog!");
+        document.getElementById("addTitle").value = "";
+        document.getElementById("addGenre").value = "";
+        document.getElementById("addYear").value = "";
+        document.getElementById("addPrice").value = "";
+        document.getElementById("addImage").value = "";
+        await loadMovies();
+        loadAdminMovies();
+    } else {
+        alert("Failed to add movie");
+    }
+}
+
+function loadAdminMovies() {
+    const list = document.getElementById("adminMoviesList");
+    list.innerHTML = "";
+    allMovies.forEach(m => {
+        const isTrending = trendingMovieIds.includes(m.id);
+        const trendBtnText = isTrending ? "Remove Trending" : "Make Trending";
+        const trendBtnColor = isTrending ? "#555" : "#4CAF50";
+        
+        list.innerHTML += `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #333;">
+                <div><strong>${m.title}</strong> (${m.year}) - $${m.price.toFixed(2)}</div>
+                <div>
+                    <button onclick="toggleTrending(${m.id})" style="background:${trendBtnColor}; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer;">${trendBtnText}</button>
+                    <button onclick="editMoviePoster(${m.id}, '${m.imageUrl || ''}')" style="background:#007bff; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; margin-left:5px;">Edit Poster</button>
+                    <button onclick="editMovie(${m.id}, ${m.price})" style="background:#f5b50a; color:black; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; margin-left:5px;">Edit Price</button>
+                    <button onclick="deleteMovie(${m.id})" style="background:#e50914; color:white; border:none; padding:5px 10px; border-radius:3px; cursor:pointer; margin-left:5px;">Delete</button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function toggleTrending(id) {
+    if (trendingMovieIds.includes(id)) {
+        trendingMovieIds = trendingMovieIds.filter(tId => tId !== id);
+    } else {
+        trendingMovieIds.push(id);
+    }
+    localStorage.setItem("trendingMovieIds", JSON.stringify(trendingMovieIds));
+    renderMovies();
+    if(currentPage === 'admin') loadAdminMovies();
+}
+
+async function editMovie(id, currentPrice) {
+    const newPrice = prompt("Enter new price for this movie:", currentPrice);
+    if (!newPrice || isNaN(newPrice)) return;
+    
+    const res = await fetch(`${API_URL}/movies?id=${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ price: parseFloat(newPrice), available: true })
+    });
+    if (res.ok) {
+        alert("Movie price updated!");
+        await loadMovies();
+        loadAdminMovies();
+    }
+}
+
+async function editMoviePoster(id, currentUrl) {
+    const newUrl = prompt("Enter new poster image URL:", currentUrl);
+    if (!newUrl || newUrl === currentUrl) return;
+    
+    const res = await fetch(`${API_URL}/movies?id=${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ imageUrl: newUrl, price: 0, available: true })
+    });
+    if (res.ok) {
+        alert("Movie poster updated!");
+        await loadMovies();
+        loadAdminMovies();
+    }
+}
+
+async function deleteMovie(id) {
+    if (!confirm("Are you sure you want to completely delete this movie from the catalog?")) return;
+    const res = await fetch(`${API_URL}/movies?id=${id}`, {
+        method: 'DELETE'
+    });
+    if (res.ok) {
+        alert("Movie removed!");
+        await loadMovies();
+        loadAdminMovies();
+    }
+}
