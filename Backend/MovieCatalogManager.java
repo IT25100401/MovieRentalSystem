@@ -84,7 +84,7 @@ public class MovieCatalogManager {
             stmt.setBoolean(2, newAvailability);
             stmt.setInt(3, movieId);
             int rows = stmt.executeUpdate();
-            Database.autoUpdateAllFiles(); // Auto update movies.txt
+            Database.autoUpdateAllFiles();  //Auto update movies.txt
             return rows > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,7 +119,7 @@ public class MovieCatalogManager {
 
         try (Connection conn = Database.getConnection()) {
             // Delete dependent records first to avoid foreign key constraints
-            for (String depSql : dependencySqls) {
+            for (String depSql: dependencySqls) {
                 try (PreparedStatement stmt = conn.prepareStatement(depSql)) {
                     stmt.setInt(1, movieId);
                     stmt.executeUpdate();
