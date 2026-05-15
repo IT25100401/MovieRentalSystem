@@ -99,3 +99,28 @@
             </div>
         </main>
     </div>
+
+
+    <!-- MEMBER 2: Movie Catalog Management -->
+    <!-- ADMIN PAGE -->
+    <div id="page-admin" class="page">
+        <main class="container" style="padding-top: 100px;">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <h2>Admin Dashboard - Inventory</h2>
+            <div style="display:flex; gap: 40px; margin-top:20px;">
+                <div class="admin-panel transaction-box" style="flex: 1; margin: 0; max-width: none;">
+                    <h3 style="margin-bottom: 20px;">Add New Movie</h3>
+                    <input type="text" id="addTitle" placeholder="Movie Title" class="pay-input">
+                    <input type="text" id="addGenre" placeholder="Genre (e.g. Action, Comedy)" class="pay-input">
+                    <input type="number" id="addYear" placeholder="Release Year" class="pay-input">
+                    <input type="number" id="addPrice" placeholder="Rental Price ($)" class="pay-input">
+                    <input type="text" id="addImage" placeholder="Poster Image URL" class="pay-input">
+                    <button onclick="addMovie()" class="rent-btn" style="width: 100%; margin-top: 15px;">Publish Movie</button>
+                </div>
+                <div class="admin-panel transaction-box" style="flex: 2; margin: 0; max-width: none; max-height: 600px; overflow-y: auto;">
+                    <h3 style="margin-bottom: 20px;">Manage Catalog (Edit/Delete)</h3>
+                    <div id="adminMoviesList"></div>
+                </div>
+            </div>
+
+            
