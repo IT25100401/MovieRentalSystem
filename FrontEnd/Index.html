@@ -1,0 +1,23 @@
+    <!-- MEMBER 6: Payment & Billing -->
+    <!-- TRANSACTION PAGE -->
+    <div id="page-transaction" class="page">
+        <main class="container" style="padding-top: 100px; text-align: center;">
+            <div style="text-align: left;"><button class="back-btn" onclick="goBack()">← Back</button></div>
+            <h2>Secure Checkout</h2>
+            <div class="transaction-box">
+                <h3 style="margin-bottom: 20px;">Order Summary</h3>
+                <div id="transactionItems" style="margin-bottom: 20px; text-align: left;"></div>
+                <h2 style="color: #e50914; margin-bottom: 30px;">Total to Pay: $<span id="transactionTotal"></span></h2>
+                
+                <div class="payment-form">
+                    <input type="text" placeholder="Name on Card" class="pay-input">
+                    <input type="text" placeholder="Card Number" class="pay-input">
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" placeholder="MM/YY" class="pay-input" style="flex: 1; margin: 0;">
+                        <input type="text" placeholder="CVC" class="pay-input" style="flex: 1; margin: 0;">
+                    </div>
+                    <button onclick="confirmPayment()" class="rent-btn" style="width: 100%; margin-top: 20px; font-size: 1.2rem;">Confirm Payment</button>
+                </div>
+            </div>
+        </main>
+    </div>
