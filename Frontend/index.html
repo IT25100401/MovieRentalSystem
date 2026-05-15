@@ -122,5 +122,19 @@
                     <div id="adminMoviesList"></div>
                 </div>
             </div>
+ <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Register</h2>
+            <input type="text" id="regUsername" placeholder="Username" required class="pay-input">
+            <input type="email" id="regEmail" placeholder="Email" required class="pay-input">
+            <input type="password" id="regPassword" placeholder="Password" required class="pay-input">
+            <button onclick="register()" class="rent-btn" style="width: 100%;">Sign Up</button>
+        </div>
+    </div>
 
+    <script src="app.js"></script>
+</body>
+</html>
             
