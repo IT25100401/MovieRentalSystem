@@ -1,8 +1,0 @@
-{
-  "name": "frontend",
-  "version": "1.0.0",
-  "description": "Frontend for Movie Rental",
-  "scripts": {
-    "start": "npx serve -l 3000"
-  }
-}
