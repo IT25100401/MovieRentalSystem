@@ -1,0 +1,37 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETRENTAL - Movie Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Hidden inputs to absorb aggressive Chrome/Edge autofill -->
+    <div style="display: none;" aria-hidden="true">
+        <input type="text" name="fake_username_autofill" autocomplete="username">
+        <input type="password" name="fake_password_autofill" autocomplete="current-password">
+    </div>
+
+   
+     <h3>Reviews</h3>
+         <div class="review-form">
+            <div class="star-rating">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+           </div>
+              <input type="hidden" id="reviewRating" value="0">
+              <textarea id="reviewComment" placeholder="Write your review here..." class="pay-input" style="height: 80px; resize: none;"></textarea>
+              <button onclick="submitReview()" class="rent-btn" style="margin-top: 10px;">Submit Review</button>
+         </div>
+          <div id="reviewSection" class="review-list"></div>
+  <div class="transaction-box" style="margin-top: 40px; max-height: 400px; overflow-y: auto; max-width: none;">
+                <h3 style="margin-bottom: 20px;">Manage Reviews</h3>
+                <div id="adminReviewsList"></div>
+            </div>
+          <script src="app.js"></script>
+</body>
+</html>
