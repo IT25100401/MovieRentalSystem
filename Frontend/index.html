@@ -1,1 +1,60 @@
+<!-- MEMBER 1: User Account & Authentication -->
+    <!-- PROFILE PAGE -->
+    <div id="page-profile" class="page">
+        <main class="container" style="padding-top: 100px;">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <h2>User Profile</h2>
+            <div style="display:flex; gap: 40px; margin-top:20px;">
+                <div class="transaction-box" style="flex:1; margin:0; max-width: none;">
+                    <h3 style="margin-bottom: 20px;">Account Details</h3>
+                    <p><strong>Username:</strong> <span id="profUsername"></span></p>
+                    <p><strong>Email:</strong> <span id="profEmailTxt"></span></p>
+                    <p style="margin-bottom:25px;"><strong>Role:</strong> <span id="profRole"></span></p>
+                    
+                    <h4 style="margin-bottom: 15px; color: #aaa;">Update Information</h4>
+                    <input type="email" id="editEmail" placeholder="Update Email Address" class="pay-input">
+                    <input type="password" id="editPassword" placeholder="New Password (leave blank to keep)" class="pay-input">
+                    <input type="password" id="editPasswordConfirm" placeholder="Confirm New Password" class="pay-input">
+                    <button onclick="updateProfile()" class="rent-btn" style="width: 100%; margin-bottom: 15px;">Save Changes</button>
+                    
+                    <hr class="divider" style="margin: 20px 0;">
+                    
+                    <button onclick="deleteAccount()" class="cart-btn" style="width: 100%; color: #e50914; border-color: #e50914;">Delete Account</button>
+                </div>
+                <div class="transaction-box" style="flex:2; margin:0; max-width: none;">
+                    <!-- MEMBER 3: Rental Transaction Management -->
+                    <h3 style="margin-bottom: 20px;">Rental History</h3>
+                    <div id="rentalHistoryList"></div>
+                </div>
+            </div>
+        </main>
+      <!-- MEMBER 1: User Account & Authentication -->
+    <!-- MODALS -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Sign In</h2>
+            <input type="email" id="loginEmail" placeholder="Email" required class="pay-input">
+            <input type="password" id="loginPassword" placeholder="Password" required class="pay-input">
+            <button onclick="login()" class="rent-btn" style="width: 100%;">Sign In</button>
+        </div>
+    </div>
+      <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Register</h2>
+            <input type="text" id="regUsername" placeholder="Username" required class="pay-input">
+            <input type="email" id="regEmail" placeholder="Email" required class="pay-input">
+            <input type="password" id="regPassword" placeholder="Password" required class="pay-input">
+            <button onclick="register()" class="rent-btn" style="width: 100%;">Sign Up</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+    </div>
 
