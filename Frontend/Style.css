@@ -1,0 +1,25 @@
+.review-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.star-rating .star {
+    color: #555;
+    transition: color 0.2s, transform 0.1s;
+}
+
+.star-rating .star:hover {
+    transform: scale(1.1);
+}
+
+.star-rating .star.active {
+    color: #f5b50a; /* gold */
+}
