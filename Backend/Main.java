@@ -32,7 +32,12 @@
                 } else {
                     success = MovieCatalogManager.editMovieInfo(movieId, updateData.getPrice(), updateData.isAvailable());
                 }
-                
+                if (success) sendResponse(exchange, 200, "Movie updated");
+                else sendResponse(exchange, 500, "Update failed");
+            } else if ("DELETE".equals(exchange.getRequestMethod())) {
+                boolean success = MovieCatalogManager.removeMovie(movieId);
+                if (success) sendResponse(exchange, 200, "Movie deleted");
+                else sendResponse(exchange, 500, "Deletion failed");
             }
         }
     }
