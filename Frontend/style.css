@@ -82,3 +82,145 @@ body {
 
 .hero-content h2 { font-size: 4rem; margin-bottom: 20px; }
 .hero-content p { font-size: 1.5rem; margin-bottom: 30px; }
+
+/* SEARCH BARS */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    backdrop-filter: blur(5px);
+}
+.search-bar::placeholder { color: #ccc; }
+
+.search-bar-dark {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #181818;
+    color: white;
+    outline: none;
+}
+
+/* CONTAINERS & GRIDS */
+.container {
+    padding: 20px 50px;
+    padding-bottom: 100px;
+}
+
+.container h3, .container h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.movie-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.movie-card {
+    min-width: 200px;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 20px 10px 10px;
+}
+
+/* MOVIE DETAILS PAGE */
+.back-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.details-container {
+    display: flex;
+    gap: 50px;
+    background: #181818;
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.detail-poster {
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.detail-info { flex: 1; }
+
+.action-buttons { display: flex; gap: 15px; }
+
+.rent-btn {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.rent-btn:hover { background-color: #f40612; }
+
+.cart-btn {
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    border: 1px solid white;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cart-btn:hover { background-color: rgba(255,255,255,0.3); }
+
+.divider {
+    margin: 40px 0;
+    border: 0;
+    border-top: 1px solid #333;
+}
