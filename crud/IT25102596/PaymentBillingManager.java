@@ -1,0 +1,108 @@
+package org.example.crud.member6;
+
+import org.example.Database;
+import org.example.Models.Invoice;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PaymentBillingManager {
+
+    // Create: Generate rental invoice
+    public static boolean generateRentalInvoice(Invoice invoice) {
+        String sql = "INSERT INTO invoices (rental_id, amount, status) VALUES (?, ?, ?)";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, invoice.getRentalId());
+            stmt.setDouble(2, invoice.getAmount());
+            stmt.setString(3, invoice.getStatus() != null ? invoice.getStatus() : "Pending");
+            int rows = stmt.executeUpdate();
+            Database.autoUpdateAllFiles();
+            return rows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Read: View payment history
+    public static List<Invoice> viewPaymentHistory(int rentalId) {
+        List<Invoice> invoices = new ArrayList<>();
+        String sql = "SELECT * FROM invoices WHERE rental_id=?";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, rentalId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                invoices.add(new Invoice(
+                        rs.getInt("id"), rs.getInt("rental_id"),
+                        rs.getDouble("amount"), rs.getString("status")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return invoices;
+    }
+
+    public static List<java.util.Map<String, Object>> getUserTransactionHistory(int userId) {
+        List<java.util.Map<String, Object>> list = new ArrayList<>();
+        String sql = "SELECT i.id, i.amount, i.status, r.rental_date, m.title " +
+                     "FROM invoices i " +
+                     "JOIN rentals r ON i.rental_id = r.id " +
+                     "JOIN movies m ON r.movie_id = m.id " +
+                     "WHERE r.user_id = ?";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                java.util.Map<String, Object> map = new java.util.HashMap<>();
+                map.put("invoiceId", rs.getInt("id"));
+                map.put("amount", rs.getDouble("amount"));
+                map.put("status", rs.getString("status"));
+                map.put("date", rs.getString("rental_date"));
+                map.put("movieTitle", rs.getString("title"));
+                list.add(map);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    // Update: Update payment status (Pending/Paid)
+    public static boolean updatePaymentStatus(int invoiceId, String newStatus) {
+        String sql = "UPDATE invoices SET status=? WHERE id=?";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, newStatus);
+            stmt.setInt(2, invoiceId);
+            int rows = stmt.executeUpdate();
+            Database.autoUpdateAllFiles();
+            return rows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // Delete: Void incorrect or disputed charges
+    public static boolean voidDisputedCharge(int invoiceId) {
+        String sql = "DELETE FROM invoices WHERE id=?";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, invoiceId);
+            int rows = stmt.executeUpdate();
+            Database.autoUpdateAllFiles();
+            return rows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
